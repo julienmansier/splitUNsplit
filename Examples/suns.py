@@ -37,11 +37,12 @@ if __name__ == '__main__':
             print(f"File '{args.file}' does not exist. Cannot Split")
     elif args.unsplit:
         print("Unsplitting....")
-        result = subprocess.run(['cat', '*.part*', '>', str(args.file)], capture_output=True, text=True)
+        result = subprocess.run("cat *.part* > "+ str(args.file), shell=True, check=True)
+
         if result.returncode == 0:
-            print("Split executed successfully:")
+            print("Unsplit executed successfully:")
         else:
-            print("Split failed with error:")
+            print("Unsplit failed with error:")
             print(result.stderr)
 
 
